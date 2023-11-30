@@ -1,8 +1,4 @@
-//
-// Created by doria on 11/30/2023.
-//
-
 #ifndef PRZYPOMNIENIEAISD_SELECTIONSORT_H
 #define PRZYPOMNIENIEAISD_SELECTIONSORT_H
-
+void selectionSort(int *sortArray, int numberOfElements);
 #endif //PRZYPOMNIENIEAISD_SELECTIONSORT_H

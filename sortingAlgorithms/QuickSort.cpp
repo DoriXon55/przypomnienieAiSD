@@ -1,31 +1,56 @@
 #include <iostream>
+#include "QuickSort.h"
 
 using namespace std;
 
-#include "QuickSort.h"
+int choosePivot(int sortArray[], int left, int right) {
+    int mid = left + (right - left) / 2;
+    int pivotValue = sortArray[mid];
+    swap(sortArray[mid], sortArray[right]);
+    return pivotValue;
+}
 
-void quickSort(int *sortArray, int indexLeft, int indexRight) {
-    if (indexLeft >= indexRight) {
-        return;
-    }
-    int pivot = *(sortArray + indexRight),
-            border = indexLeft - 1;
+int partitionArray(int sortArray[], int left, int right) {
+    int pivotValue = choosePivot(sortArray, left, right);
+    int border = left - 1;
+    int i = left;
 
-    while (indexLeft < indexRight) {
-        if (*(sortArray + indexLeft) < pivot) {
+    while (i < right) {
+        if (sortArray[i] < pivotValue) {
             border++;
-            if (border != indexLeft) {
-                swap(*(sortArray + border), *(sortArray + indexLeft));
+            if (border != i) {
+                swap(sortArray[border], sortArray[i]);
             }
         }
-        indexLeft++;
+        i++;
     }
-    border++;
-    if (border != indexRight) {
-        swap(*(sortArray + border), *(sortArray + indexRight));
-    }
-    quickSort(sortArray, indexLeft, border - 1);
-    quickSort(sortArray, border + 1, indexRight);
 
+    border++;
+    if (border != right) {
+        swap(sortArray[border], sortArray[right]);
+    }
+
+    return border;
+}
+
+
+void quickSort(int sortArray[], int left, int right) {
+    if (left >= right) {
+        return;
+    }
+
+    int border = partitionArray(sortArray, left, right);
+
+    if (border - left < right - border) {
+        quickSort(sortArray, left, border - 1);
+        quickSort(sortArray, border + 1, right);
+    } else {
+        quickSort(sortArray, border + 1, right);
+        quickSort(sortArray, left, border - 1);
+    }
 
 }
+
+
+
+// choose pivot and move it to right index
