@@ -1,8 +1,8 @@
-#include <iostream>
+
 #include "SelectionSort.h"
 
 void selectionSort(int *sortArray, int numberOfElements) {
-    int border, minIndex;
+    int minIndex;
     for (int i = 0; i < numberOfElements - 1; i++) {
         minIndex = i;
         for (int j = i + 1; j < numberOfElements; j++) {

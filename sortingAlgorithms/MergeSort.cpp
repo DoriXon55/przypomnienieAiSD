@@ -1,7 +1,5 @@
 #include "MergeSort.h"
-#include <iostream>
 
-using namespace std;
 
 void merge(int *sortArray, int leftIndex, int middleIndex, int rightIndex, int *extraArray) {
 

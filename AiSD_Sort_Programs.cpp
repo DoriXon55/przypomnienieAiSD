@@ -1,6 +1,5 @@
 #include <iostream>
-#include <ctime>
-#include <cstdlib>
+#include <random>
 #include "sortingAlgorithms/BubbleSort.h"
 #include "sortingAlgorithms/InsertionSort.h"
 #include "sortingAlgorithms/QuickSort.h"
@@ -9,75 +8,87 @@
 
 using namespace std;
 
-// w celach naukowych do mierzenia czasu losowymi liczbami
-
 int main() {
-    srand(time(nullptr));
+    random_device rn;
+    mt19937 gen(rn());
+    uniform_int_distribution<int> dis(1, 100);
     string comDefault;
     int numberOfElements = 0;
+    char whileOption = 'T';
     char userOption;
-    cout << "Give number of elements: \n";
-    cin >> numberOfElements;
 
-    int *sortArray = (int *) calloc(numberOfElements, sizeof(int));
-    if (sortArray == nullptr) {
-        cout << "Too many elements!";
-        return 1;
-    }
-    for (int i = 0; i < numberOfElements; i++) {
-        sortArray[i] = (rand() % 100) + 1;
-    }
+    while (whileOption == 'T' || whileOption == 't') {
+        cout << "Give number of elements: \n";
+        cin >> numberOfElements;
 
-    cout << "\nYour array before sort:\n";
-    for (int i = 0; i < numberOfElements; i++) {
-        cout <<sortArray[i] << " ";
-    }
-    cout << endl;
-
-
-    cout << "Select one option:\n"
-            "B - Bubble Sort\n"
-            "I - Insertion Sort\n"
-            "Q - Quick Sort\n"
-            "S - Selection Sort\n"
-            "M - Merge Sort\n";
-    cin >> userOption;
-
-    switch (userOption) {
-        case 'B':
-            bubbleSort(sortArray, numberOfElements);
-            break;
-        case 'I':
-            insertionSort(sortArray, numberOfElements);
-            break;
-        case 'Q':
-            quickSort(sortArray, 0, numberOfElements - 1);
-            break;
-        case 'S':
-            selectionSort(sortArray, numberOfElements);
-            break;
-        case 'M':
-            mergeSort(sortArray, 0, numberOfElements - 1);
-            break;
-        default:
-            cout << "Wrong Input!!!";
-            comDefault = "Wrong Input";
-            break;
-    }
-
-    if ("Wrong Input" == comDefault) {
-        return 2;
-    } else {
-        cout << "Your array after sorting: \n";
-        for (int i = 0; i < numberOfElements; i++) {
-            cout <<sortArray[i] << " ";
+        if (numberOfElements <= 0) {
+            cout << "Invalid number of elements!" << endl;
+            return 2;
         }
+
+        int *sortArray = new int[numberOfElements];
+
+        for (int i = 0; i < numberOfElements; i++) {
+            sortArray[i] = dis(gen);
+        }
+
+        cout << endl << "Your array before sort:" << endl
+             << "-----------------------------------------------------------------------------------" << endl;
+        for (int i = 0; i < numberOfElements; i++) {
+            cout << sortArray[i] << " ";
+        }
+        cout << endl
+             << "-----------------------------------------------------------------------------------" << endl;
+
+
+        cout << "Select one option:\n"
+                "B - Bubble Sort\n"
+                "I - Insertion Sort\n"
+                "Q - Quick Sort\n"
+                "S - Selection Sort\n"
+                "M - Merge Sort\n";
+        cin >> userOption;
+
+        switch (userOption) {
+            case 'B':
+                bubbleSort(sortArray, numberOfElements);
+                break;
+            case 'I':
+                insertionSort(sortArray, numberOfElements);
+                break;
+            case 'Q':
+                quickSort(sortArray, 0, numberOfElements - 1);
+                break;
+            case 'S':
+                selectionSort(sortArray, numberOfElements);
+                break;
+            case 'M':
+                mergeSort(sortArray, 0, numberOfElements - 1);
+                break;
+            default:
+                cout << "Wrong Input!!!";
+                comDefault = "Wrong Input";
+                break;
+        }
+
+        if ("Wrong Input" == comDefault) {
+            return 2;
+        } else {
+            cout << endl << "Your array after sort:" << endl
+                 << "-----------------------------------------------------------------------------------" << endl;
+            for (int i = 0; i < numberOfElements; i++) {
+                cout << sortArray[i] << " ";
+            }
+        }
+        cout << endl
+             << "-----------------------------------------------------------------------------------" << endl;
+
+        delete[]sortArray;
+
+
+        cout << "Do you want to continue (T/N)?" << endl;
+        cin >> whileOption;
     }
-
-    free(sortArray);
-
     cout << endl << "Thanks for using this program! See ya next time! :)" << endl;
-
-
     return 0;
 }
