@@ -1,6 +1,5 @@
 #include <iostream>
 #include "QuickSort.h"
-
 using namespace std;
 
 int choosePivot(int sortArray[], int left, int right) {

@@ -1,5 +1,4 @@
 #include "BinarySearch.h"
-
 int binarySearch(int *sortArray, int leftIndex, int rightIndex, int target) {
     if (leftIndex <= rightIndex) {
 

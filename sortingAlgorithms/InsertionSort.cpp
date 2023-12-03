@@ -1,5 +1,4 @@
 #include "InsertionSort.h"
-
 void insertionSort(int arraySort[], int numberOfElements) {
     int currentIndex;
     int nextIndex;

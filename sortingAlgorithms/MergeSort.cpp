@@ -1,6 +1,4 @@
 #include "MergeSort.h"
-
-
 void merge(int *sortArray, int leftIndex, int middleIndex, int rightIndex, int *extraArray) {
 
     for (int i = leftIndex; i <= rightIndex; i++) {

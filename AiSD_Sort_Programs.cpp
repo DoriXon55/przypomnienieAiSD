@@ -7,8 +7,6 @@
 #include "sortingAlgorithms/MergeSort.h"
 #include "sortingAlgorithms/ShellSort.h"
 #include "searchAlgorithms/BinarySearch.h"
-
-
 using namespace std;
 
 int main() {

@@ -1,6 +1,4 @@
-
 #include "SelectionSort.h"
-
 void selectionSort(int *sortArray, int numberOfElements) {
     int minIndex;
     for (int i = 0; i < numberOfElements - 1; i++) {

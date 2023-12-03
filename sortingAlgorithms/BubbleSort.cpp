@@ -1,6 +1,5 @@
 #include <iostream>
 #include "BubbleSort.h"
-
 using namespace std;
 
 void bubbleSort(int *sortArray, int numberOfElements) {
